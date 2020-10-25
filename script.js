@@ -111,7 +111,6 @@ function verify(choice) {
 
     } else if (choice.target.innerText !== correct && currentPage !== finalPage) {
         questionResults.innerHTML = "Wrong!"
-        secondsLeft - 5
         currentPage++;
         createQuestion();
 
