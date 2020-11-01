@@ -4,7 +4,7 @@
 
 ## Project Overview ##
 
-Thgis project asked us ato create a quiz that had a timer, kept score, and allowed us to submit/save/clear those scores. This project has presented the largest challenge for me thuse far. I begin trying to think through what I would need to create in order to make this quiz function. 
+This project asked us ato create a quiz that had a timer, kept score, and allowed us to submit/save/clear those scores. This project has presented the largest challenge for me thuse far. I begin trying to think through what I would need to create in order to make this quiz function. 
 
 I was able to get the the questions and answers to load propoerly. I created a verify function that allowed me to check the answers to see if they are correct. The timer also works when the quiz begins. The score also is tallied (logged). 
 

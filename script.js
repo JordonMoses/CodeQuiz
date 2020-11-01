@@ -17,6 +17,7 @@ let playerInitials = document.querySelector("#initials")
 let playerScore = document.querySelector("#scores")
 let restartQuiz = document.querySelector("#restart");
 let clearLeaderboard = document.querySelector("#clear");
+let playerInput = document.querySelector("#playerInitials")
 
 let buttonOne = document.querySelector("#one");
 let buttonTwo = document.querySelector("#two");
@@ -103,16 +104,18 @@ function verify(choice) {
     correct = questions[currentPage].correctAnswer;
 
     if (choice.target.innerText === correct && currentPage !== finalPage) {
-        questionResults.innerHTML = "Right!"
+        setTimeout(function(){alert("Right!"); }, 250);
         score++;
         console.log(score)
         currentPage++;
         createQuestion();
+        
 
     } else if (choice.target.innerText !== correct && currentPage !== finalPage) {
-        questionResults.innerHTML = "Wrong!"
+        setTimeout(function(){alert("Wrong!"); }, 250);
         currentPage++;
         createQuestion();
+         
 
     } else {
         showLeaderboard();
@@ -122,19 +125,40 @@ function verify(choice) {
     }
 }
 
+function submitScore() {
+    let objectArray = []
+    console.log("Is working?")
+    console.log(this)
+    console.log(playerInput.value)
+    console.log(submitButton.value)
+    let userInput = playerInput.value;
+    let newScore = {
+        name: userInput,
+        score: score
+    };
+    objectArray.push(newScore);
+    console.log(userInput)
+    console.log(objectArray)
+    localStorage.setItem("name", JSON.stringify(objectArray));
+    playerInitials.textContent = userInput;
+    // let newPlayer = document.createElement("li");
+}
+
 function showLeaderboard(){
     leaderContainer.style.display = "block";
     finalPageContainer.style.display = "block";
     quizContainer.style.display = "none";
+    let pancakes = JSON.parse(localStorage.getItem("name"))
+    console.log(pancakes)
+    playerInitials.textContent = pancakes.name + " " + pancakes.score
 }
 
-function submitScore() {
-    playerInitials.innerHTML = "";
-    playerScore.innerHTML = "";
-    // let newPlayer = document.createElement("li");
-}
+playerInitials.textContent = localStorage.getItem("name");
 
-// function playQuiz(){
+
+
+
+// function replayQuiz(){
 //     leaderContainer.style.display = "none";
 //     finalPageContainer.style.display = "none";
 //     quizContainer.style.display = "block"
@@ -148,7 +172,8 @@ buttonOne.addEventListener("click", verify)
 buttonTwo.addEventListener("click", verify)
 buttonThree.addEventListener("click", verify)
 submitButton.addEventListener("click", submitScore)
-restartQuiz.addEventListener("click", playQuiz)
+
+// restartQuiz.addEventListener("click", replayQuiz)
 
 // I need to be able to clear the HTML under my answers/buttons each time a new question appears
 // I need to display the questions with the buttons/answers (complete)
